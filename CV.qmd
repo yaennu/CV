@@ -1,0 +1,98 @@
+---
+title: "Lebenslauf"
+author: "Yannick Schwarz"
+format: html
+---
+
+# TODO
+
+* Publish as Website: https://garrettgman.github.io/rmarkdown/rmarkdown_websites.html#overview
+
+
+```{r}
+library(tidyverse)
+library(plotly)
+```
+
+
+# Lebenslauf
+
+```{r}
+Work <- data.frame(
+  Start = c(2019, 2018, 2014, 2012),
+  End = c(2024, 2019, 2019, 2014),
+  Value = c(95, 80, 75, 66),
+  What = c("Data Scientist", "Internship", "Bike messenger", "Bike messenger"),
+  Where = c(
+    "Risk adjustment, Gemeinsame Einrichtung KVG",
+    "SECO, Arbeitslosenversicherung, Grundlagen",
+    "Velokurier Bern",
+    "Metropol Kurier Basel"
+    )
+) %>%
+  mutate(Theme = "Work")
+
+Education <- data.frame(
+  Start = c(2020, 2015, 2014, 2011, 2005),
+  End = c(2021, 2018, 2014, 2011, 2009),
+  Value = c(60, 50, 45, 40, 33),
+  What = c(
+    "CAS",
+    "Master of Science in Economics", 
+    "Bachelor of Arts in Business and Economics",
+    "Bachelor of Arts in Deutsche Philologie und Wirtschaftswissenschaften",
+    "Gymnasium in Wirtschafts- und Rechtswissenschaften"
+    ),
+  Where = c(
+    "ZHAW",
+    "Universität Bern",
+    "Universität Basel",
+    "Universität Basel",
+    "Gymnasium Kirchenfeld Bern"
+    )
+) %>%
+  mutate(Theme = "Education")
+
+Experience <- data.frame(
+  Start = c(),
+  End = c(),
+  Value = c(),
+  What = c(),
+  Where = c()
+) %>%
+  mutate(Theme = "Experience")
+  
+
+CvDf <- rbind(Work, Education)
+
+plot_ly(
+  data = CvDf,
+  type = "scatter",
+  mode = "lines",
+  x = ~Start,
+  y = ~Value,
+  color = ~Theme
+)
+```
+
+# Arbeitspensum
+
+```{r}
+# Balkendiagramm python
+```
+
+
+# Interessen
+
+```{r}
+#spider diagramm mit interessen in data science?
+```
+
+
+# Hobbies
+
+```{r}
+# python
+```
+
+

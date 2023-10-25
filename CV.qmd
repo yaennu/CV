@@ -2,97 +2,96 @@
 title: "Lebenslauf"
 author: "Yannick Schwarz"
 format: html
+execute:
+  echo: false
 ---
 
 # TODO
 
-* Publish as Website: https://garrettgman.github.io/rmarkdown/rmarkdown_websites.html#overview
+* Publish as Website: https://quarto.org/docs/publishing/github-pages.html
 
 
 ```{r}
 library(tidyverse)
 library(plotly)
+#reticulate::use_virtualenv("env")
+# works only with venv?
+
+# start venv with .\env\Scripts\activate in terminal
 ```
 
 
 # Lebenslauf
 
 ```{r}
-Work <- data.frame(
-  Start = c(2019, 2018, 2014, 2012),
-  End = c(2024, 2019, 2019, 2014),
-  Value = c(95, 80, 75, 66),
-  What = c("Data Scientist", "Internship", "Bike messenger", "Bike messenger"),
-  Where = c(
-    "Risk adjustment, Gemeinsame Einrichtung KVG",
-    "SECO, Arbeitslosenversicherung, Grundlagen",
-    "Velokurier Bern",
-    "Metropol Kurier Basel"
-    )
-) %>%
-  mutate(Theme = "Work")
-
-Education <- data.frame(
-  Start = c(2020, 2015, 2014, 2011, 2005),
-  End = c(2021, 2018, 2014, 2011, 2009),
-  Value = c(60, 50, 45, 40, 33),
-  What = c(
-    "CAS",
-    "Master of Science in Economics", 
-    "Bachelor of Arts in Business and Economics",
-    "Bachelor of Arts in Deutsche Philologie und Wirtschaftswissenschaften",
-    "Gymnasium in Wirtschafts- und Rechtswissenschaften"
-    ),
-  Where = c(
-    "ZHAW",
-    "Universität Bern",
-    "Universität Basel",
-    "Universität Basel",
-    "Gymnasium Kirchenfeld Bern"
-    )
-) %>%
-  mutate(Theme = "Education")
-
-Experience <- data.frame(
-  Start = c(),
-  End = c(),
-  Value = c(),
-  What = c(),
-  Where = c()
-) %>%
-  mutate(Theme = "Experience")
+CV <- readxl::read_excel("C:/DefaultWD/CV-Data.xlsx") %>%
+  mutate(
+    across(contains(c("Start", "Ende")), ~ str_remove_all(.x, pattern = "\"")),
+    across(contains(c("Start", "Ende")), ~ as.Date(.x)),
+  )
   
-
-CvDf <- rbind(Work, Education)
-
 plot_ly(
-  data = CvDf,
+  data = CV,
   type = "scatter",
-  mode = "lines",
+  mode = "lines+markers",
   x = ~Start,
-  y = ~Value,
-  color = ~Theme
+  y = ~Wert,
+  color = ~Thema,
+  text = ~Bezeichnung,
+  hovertemplate = "Ab %{x}<br>%{text}<extra></extra>"
 )
 ```
 
 # Arbeitspensum
 
-```{r}
+```{python}
 # Balkendiagramm python
+
+
 ```
 
 
 # Interessen
 
-```{r}
-#spider diagramm mit interessen in data science?
+```{python}
+import pandas as pd
+import plotly.graph_objects as go
+
+Interests = pd.read_excel(
+  "C:/DefaultWD/CV-Data.xlsx",
+  sheet_name = "Interests"
+  )
+Categories = pd.unique(Interests.Bezeichnung)
+
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(
+      r=Interests[Interests["Thema"]=="Interesse"].Wert,
+      theta=Categories,
+      fill='toself',
+      name='Interesse'
+))
+fig.add_trace(go.Scatterpolar(
+      r=Interests[Interests["Thema"]=="Erfahrung"].Wert,
+      theta=Categories,
+      fill='toself',
+      name="Erfahrung"
+))
+fig.update_layout(
+  polar=dict(
+    radialaxis=dict(
+      visible=True,
+      range=[0, 5]
+    )),
+  showlegend=False
+)
+fig.show()
 ```
 
 
 # Hobbies
 
-```{r}
-# python
+```{python}
+
 ```
 
 

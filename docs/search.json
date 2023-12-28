@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "CV.html",
+    "href": "CV.html",
+    "title": "Lebenslauf",
+    "section": "",
+    "text": "TODO\n\nPublish as Website: https://quarto.org/docs/publishing/github-pages.html\n\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nAttache Paket: 'plotly'\n\n\nDas folgende Objekt ist maskiert 'package:ggplot2':\n\n    last_plot\n\n\nDas folgende Objekt ist maskiert 'package:stats':\n\n    filter\n\n\nDas folgende Objekt ist maskiert 'package:graphics':\n\n    layout\n\n\n\n\nLebenslauf\n\n\n\n\n\n\n\n\nArbeitspensum\n\n\nInteressen\n\n\n\n                        \n                                            \n\n\n\n                        \n                                            \n\n\n\n                        \n                                            \n\n\n\n                        \n                                            \n\n\n\n\nHobbies"
+  }
+]
